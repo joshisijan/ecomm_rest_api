@@ -2,9 +2,11 @@ from django.shortcuts import render
 from django.http import JsonResponse
 from .models import Product, ProductImage
 from categories.models import Category
-from django.core.paginator import Paginator
 
 def products_home(request, page_number = 1, limit = 20): 
+  # securing divisivle by 0
+  if limit == 0:
+    limit = 1
   # get total product count
   product_count = Product.objects.all().count()
   #calculate total pages

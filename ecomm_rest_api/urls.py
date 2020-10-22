@@ -18,12 +18,14 @@ from django.contrib import admin
 from django.urls import path, include
 from django.conf.urls.static import static
 
+
 urlpatterns = [
-
+    # for admin
     path('admin/', admin.site.urls),
+    # for categories 
     path('api/categories/', include('categories.urls')),
-    path('api/products/<int:page_number>/<int:limit>', include('products.urls')),
-    path('api/products/<int:page_number>/', include('products.urls')),
-    path('api/products/', include('products.urls'))
-
+    # for products
+    path('api/products/', include('products.urls')),
+    # for review
+    path('api/review/', include('review.urls')),
 ] + static(settings.MEDIA_URL, document_root=settings.MEDIA_ROOT)
